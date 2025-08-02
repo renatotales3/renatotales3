@@ -2,7 +2,7 @@
 
 <p align="center">
   🌱 Estudante de Análise e Desenvolvimento de Sistemas <br>
-  🧠 Em formação para Dev Full Stack com foco no setor bancário <br>
+  🧠 Em formação para Dev Full Stack <br>
   🌍 Inglês avançado (C1) | Governador Valadares - MG <br>
 </p>
 
