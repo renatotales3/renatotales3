@@ -22,25 +22,10 @@ Meu objetivo é criar soluções eficientes que unam **back-end robusto**, **int
 
 ---
 
-## 📊 Estatísticas  
-<p align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=renatotales3&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" />
-  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=renatotales3&theme=tokyonight" />
-</p>
-
----
-
 ## 📫 Contato  
 <p align="center">
   <a href="https://www.linkedin.com/in/renatotales3/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white&style=for-the-badge" /></a>
   <a href="mailto:renatotales.dev@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white&style=for-the-badge" /></a>
-</p>
-
----
-
-## 🐍 Atividade  
-<p align="center">
-  <img src="https://raw.githubusercontent.com/renatotales3/renatotales3/output/github-contribution-grid-snake.svg" alt="Snake animation" />
 </p>
 
 ---
