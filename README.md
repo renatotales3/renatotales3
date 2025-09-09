@@ -1,61 +1,48 @@
-<h1 align="center">👋 Olá, eu sou o Renato!</h1>
-
+<!-- Banner com animação discreta -->
 <p align="center">
-  🌱 Estudante de Análise e Desenvolvimento de Sistemas <br>
-  🧠 Em formação para Dev Full Stack <br>
-  🌍 Inglês avançado (C1) | Governador Valadares - MG <br>
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=4000&pause=1000&color=2E86C1&center=true&vCenter=true&width=800&lines=Olá,+meu+nome+é+Renato;Desenvolvedor+Full+Stack+Java+em+formação;Entusiasta+de+APIs+e+Automações" alt="Typing SVG" />
 </p>
 
 ---
 
-### 🚀 Sobre mim
-
-Sou um estudante iniciante na área de tecnologia com um grande objetivo: me tornar um **Desenvolvedor Full Stack**. Dedico **6 horas por dia** aos estudos, explorando as tecnologias mais modernas do mercado.
-
-Já estou construindo meus primeiros projetos, sempre buscando evoluir a cada dia.
-
----
-
-### 🧩 Tecnologias que estou estudando
-
-- 🌐 HTML5 | CSS3
-- 📜 JavaScript (básico/intermediário)
-- ⚛️ React (iniciando)
-- 🛠️ Node.js (em breve)
-- 🗄️ PostgreSQL e Banco de Dados (em breve)
-- 🧪 Git e GitHub
+## 👨‍💻 Sobre mim  
+Sou estudante de **Análise e Desenvolvimento de Sistemas**, em formação para atuar como **Desenvolvedor Full Stack Java**.  
+Possuo experiência em **Python**, **HTML, CSS e JavaScript**, além de conhecimento em **SQL**, **integrações com APIs** e ferramentas de automação como **n8n**.  
+Meu objetivo é criar soluções eficientes que unam **back-end robusto**, **interfaces intuitivas** e **automação inteligente**.
 
 ---
 
-### 📌 Próximos passos
-
-- Criar projetos completos Front-end e Full Stack
-- Construir um portfólio profissional
-- Publicar conteúdos no LinkedIn e aqui no GitHub
-- Conquistar minha primeira oportunidade na área!
-
----
-
-### 🔗 Onde me encontrar
-
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/renatotales3)  
+## 🛠️ Tecnologias & Ferramentas  
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=java,spring,python,js,html,css,mysql,git,github,docker,linux" />
+  <br/>
+  <img src="https://img.shields.io/badge/n8n-Automation-orange?logo=n8n&logoColor=white&style=for-the-badge" />
+  <img src="https://img.shields.io/badge/API%20Integration-02569B?style=for-the-badge&logo=fastapi&logoColor=white" />
+</p>
 
 ---
 
-**Obrigado por visitar meu perfil!**  
-Se quiser trocar uma ideia, só chamar!
+## 📊 Estatísticas  
+<p align="center">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=renatotales3&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" />
+  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=renatotales3&theme=tokyonight" />
+</p>
 
-<!--
-**renatotales3/renatotales3** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+---
 
-Here are some ideas to get you started:
+## 📫 Contato  
+<p align="center">
+  <a href="https://www.linkedin.com/in/renatotales3/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white&style=for-the-badge" /></a>
+  <a href="mailto:renatotales.dev@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white&style=for-the-badge" /></a>
+</p>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+## 🐍 Atividade  
+<p align="center">
+  <img src="https://raw.githubusercontent.com/renatotales3/renatotales3/output/github-contribution-grid-snake.svg" alt="Snake animation" />
+</p>
+
+---
+
+<p align="center"><i>"Desenvolvimento de software é transformar ideias em soluções escaláveis e de impacto."</i></p>
