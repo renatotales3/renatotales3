@@ -1,3 +1,7 @@
+<h1 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&pause=1000&color=00C6FF&center=true&vCenter=true&width=500&lines=Olá%2C+eu+sou+Renato+Tales!;Full+Stack+Developer+%F0%9F%92%BB;React+%7C+Java+%7C+Node.js+%7C+SQL">
+</h1>
+
 <!-- Contatos principais -->
 <p align="center">
   <a href="mailto:renatotales0619@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
