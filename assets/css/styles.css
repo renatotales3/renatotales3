@@ -873,7 +873,8 @@ body:not(.using-mouse) [tabindex]:focus {
     font-size: var(--fs-lg);
     color: var(--text-secondary);
     line-height: 1.7;
-    margin-bottom: var(--space-2xl);
+    /* Espaçamento menor abaixo do texto para aproximar do status */
+    margin-bottom: var(--space-lg);
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -888,16 +889,16 @@ body:not(.using-mouse) [tabindex]:focus {
 
 /* Hero Status */
 .hero-status {
-    margin-bottom: var(--space-2xl);
+    /* Espaçamento menor para aproximar dos botões */
+    margin-bottom: var(--space-lg);
     display: flex;
-    justify-content: center;
+    justify-content: center; /* mobile centralizado */
 }
 
 @media (min-width: 1024px) {
     .hero-status {
+        /* Desktop alinhado com a mesma margem da esquerda dos textos */
         justify-content: flex-start;
-        margin-left: auto;
-        margin-right: auto;
         max-width: 600px;
         margin-left: 0;
         margin-right: 0;
