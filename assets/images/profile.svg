@@ -1,0 +1,30 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="person" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#cbd5e1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="200" fill="url(#bg)"/>
+  
+  <!-- Simple person silhouette -->
+  <circle cx="200" cy="140" r="50" fill="url(#person)" opacity="0.9"/>
+  <path d="M 120 280 Q 120 220 200 220 Q 280 220 280 280 L 280 400 L 120 400 Z" fill="url(#person)" opacity="0.9"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="320" cy="80" r="3" fill="white" opacity="0.6"/>
+  <circle cx="80" cy="120" r="2" fill="white" opacity="0.4"/>
+  <circle cx="350" cy="320" r="4" fill="white" opacity="0.5"/>
+  <circle cx="50" cy="300" r="2.5" fill="white" opacity="0.3"/>
+  
+  <!-- Code brackets decoration -->
+  <text x="60" y="200" font-family="monospace" font-size="24" fill="white" opacity="0.3">&lt;/&gt;</text>
+  <text x="320" y="250" font-family="monospace" font-size="18" fill="white" opacity="0.3">{}</text>
+</svg>
