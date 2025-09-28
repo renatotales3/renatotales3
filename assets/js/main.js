@@ -23,7 +23,6 @@ class PortfolioApp {
         this.initScrollAnimations();
         this.initActiveNavLinks();
         this.initParticleSystem();
-        this.initCustomCursor();
         this.initFocusManagement();
         
         // Hide loading screen
@@ -259,60 +258,6 @@ class PortfolioApp {
         setTimeout(() => {
             particleContainer.classList.add('active');
         }, 1000);
-    }
-
-    // ===================================
-    // Custom Cursor
-    // ===================================
-    
-    initCustomCursor() {
-        const cursor = document.getElementById('custom-cursor');
-        if (!cursor) return;
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-        
-        // Mouse move handler
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Show cursor when mouse moves
-            cursor.style.opacity = '1';
-        });
-        
-        // Hide cursor when mouse leaves
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-        });
-        
-        // Hover effects for interactive elements
-        const interactiveSelectors = 'a, button, [role="button"], .social-link, .theme-toggle, .lang-toggle, .nav-link, .mobile-menu-toggle';
-        const interactiveElements = document.querySelectorAll(interactiveSelectors);
-        
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-        
-        // Smooth cursor animation
-        const animateCursor = () => {
-            cursorX += (mouseX - cursorX) * 0.1;
-            cursorY += (mouseY - cursorY) * 0.1;
-            
-            cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-            
-            requestAnimationFrame(animateCursor);
-        };
-        
-        animateCursor();
     }
 
     // ===================================

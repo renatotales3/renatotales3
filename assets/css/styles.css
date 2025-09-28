@@ -52,45 +52,6 @@ body {
     background-color: var(--bg-primary);
     overflow-x: hidden;
     transition: color 0.3s ease, background-color 0.3s ease;
-    cursor: none; /* Hide default cursor on desktop */
-}
-
-@media (pointer: coarse) {
-    body {
-        cursor: auto; /* Show default cursor on touch devices */
-    }
-}
-
-/* ===================================
-   Custom Cursor
-   =================================== */
-
-.custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--primary-500);
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
-    opacity: 0;
-}
-
-.custom-cursor.hover {
-    width: 40px;
-    height: 40px;
-    background: rgba(var(--primary-500-rgb), 0.3);
-    border: 2px solid var(--primary-500);
-}
-
-@media (pointer: coarse) {
-    .custom-cursor {
-        display: none; /* Hide on touch devices */
-    }
 }
 
 /* Remove unwanted blue highlights and selections */
