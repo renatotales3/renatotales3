@@ -1094,7 +1094,9 @@ body:not(.using-mouse) [tabindex]:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3rem;
+    /* O espaçamento vertical entre a foto e o título no mobile deve vir apenas do grid gap
+       (var(--space-2xl) = 3rem). Removemos a margem extra para evitar dobrar para 6rem. */
+    margin-bottom: 0;
 }
 
 @media (min-width: 1024px) {
