@@ -25,6 +25,11 @@ const translations = {
             greeting: 'Olá, eu sou',
             subtitle: 'Desenvolvedor',
             description: 'Desenvolvedor Full-Stack apaixonado por criar soluções digitais inovadoras. Especializado em React, Node.js e Java, sempre em busca de novos desafios.',
+            status: {
+                available: 'Disponível para projetos',
+                busy: 'Em reunião',
+                working: 'Trabalhando em projeto'
+            },
             social: {
                 linkedin: 'Conectar no LinkedIn',
                 github: 'Ver repositórios no GitHub', 
@@ -72,6 +77,11 @@ const translations = {
             greeting: 'Hello, I am',
             subtitle: 'Developer',
             description: 'Full-Stack Developer passionate about creating innovative digital solutions. Specialized in React, Node.js and Java, always looking for new challenges.',
+            status: {
+                available: 'Available for projects',
+                busy: 'In meeting',
+                working: 'Working on project'
+            },
             social: {
                 linkedin: 'Connect on LinkedIn',
                 github: 'View repositories on GitHub',

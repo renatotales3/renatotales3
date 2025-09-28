@@ -22,6 +22,9 @@ class PortfolioApp {
         this.initTypingAnimation();
         this.initScrollAnimations();
         this.initActiveNavLinks();
+        this.initParticleSystem();
+        this.initCustomCursor();
+        this.initFocusManagement();
         
         // Hide loading screen
         this.hideLoadingScreen();
@@ -229,6 +232,137 @@ class PortfolioApp {
         });
         
         sections.forEach(section => observer.observe(section));
+    }
+
+    // ===================================
+    // Particle System
+    // ===================================
+    
+    initParticleSystem() {
+        const particleContainer = document.getElementById('particle-container');
+        if (!particleContainer) return;
+        
+        // Create particles
+        const particleCount = 50;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random position
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            
+            particleContainer.appendChild(particle);
+        }
+        
+        // Activate particle system
+        setTimeout(() => {
+            particleContainer.classList.add('active');
+        }, 1000);
+    }
+
+    // ===================================
+    // Custom Cursor
+    // ===================================
+    
+    initCustomCursor() {
+        const cursor = document.getElementById('custom-cursor');
+        if (!cursor) return;
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        
+        // Mouse move handler
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Show cursor when mouse moves
+            cursor.style.opacity = '1';
+        });
+        
+        // Hide cursor when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+        
+        // Hover effects for interactive elements
+        const interactiveSelectors = 'a, button, [role="button"], .social-link, .theme-toggle, .lang-toggle, .nav-link, .mobile-menu-toggle';
+        const interactiveElements = document.querySelectorAll(interactiveSelectors);
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+        
+        // Smooth cursor animation
+        const animateCursor = () => {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            
+            cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+            
+            requestAnimationFrame(animateCursor);
+        };
+        
+        animateCursor();
+    }
+
+    // ===================================
+    // Focus Management
+    // ===================================
+    
+    initFocusManagement() {
+        // Track mouse vs keyboard usage
+        document.addEventListener('mousedown', () => {
+            document.body.classList.add('using-mouse');
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.remove('using-mouse');
+            }
+        });
+        
+        // Remove tap highlight on touch devices
+        document.addEventListener('touchstart', () => {
+            document.body.classList.add('using-touch');
+        });
+        
+        // Handle click events to prevent unwanted selection
+        document.addEventListener('mousedown', (e) => {
+            // Allow text selection for input elements and text content
+            const allowSelection = e.target.matches('input, textarea, [contenteditable="true"]');
+            const isTextContent = e.target.matches('p, h1, h2, h3, h4, h5, h6, span, div');
+            
+            if (!allowSelection && !isTextContent) {
+                e.preventDefault();
+            }
+        });
+        
+        // Handle focus for interactive elements
+        const interactiveElements = document.querySelectorAll(
+            'a, button, [role="button"], input, textarea, select, [tabindex]'
+        );
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('focus', (e) => {
+                if (!document.body.classList.contains('using-mouse')) {
+                    e.target.setAttribute('data-focus-visible', 'true');
+                }
+            });
+            
+            element.addEventListener('blur', (e) => {
+                e.target.removeAttribute('data-focus-visible');
+            });
+        });
     }
 }
 
