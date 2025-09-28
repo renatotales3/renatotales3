@@ -412,25 +412,6 @@ body:not(.using-mouse) [tabindex]:focus {
     visibility: visible;
 }
 
-/* Enhanced scroll progress with glow effect */
-.scroll-progress::after {
-    content: '';
-    position: absolute;
-    top: -1px;
-    right: -2px;
-    width: 8px;
-    height: 5px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.scroll-progress.active::after {
-    opacity: 0.8;
-}
-
 .header .container {
     height: 100%;
     display: flex;
@@ -846,6 +827,17 @@ body:not(.using-mouse) [tabindex]:focus {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
+}
+
+/* Mobile line break control */
+.mobile-break {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-break {
+        display: block;
+    }
 }
 
 .hero-subtitle {
