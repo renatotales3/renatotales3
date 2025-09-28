@@ -90,17 +90,17 @@ body {
 
 /* Dark Theme (Default) */
 :root[data-theme="dark"] {
-    /* Primary Colors - Verde Musgo */
-    --primary-50: #f0f9f0;
-    --primary-100: #dcf2dc;
-    --primary-200: #bae6ba;
-    --primary-300: #86d186;
-    --primary-400: #4ade80;
-    --primary-500: #22c55e;
-    --primary-600: #16a34a;
-    --primary-700: #15803d;
-    --primary-800: #166534;
-    --primary-900: #14532d;
+    /* Primary Colors - Azul Petróleo */
+    --primary-50: #f0f9fa;
+    --primary-100: #ccf1f6;
+    --primary-200: #99e3ed;
+    --primary-300: #66d0e4;
+    --primary-400: #33bdda;
+    --primary-500: #246a73;
+    --primary-600: #1d555b;
+    --primary-700: #164043;
+    --primary-800: #0f2a2c;
+    --primary-900: #081515;
     
     /* Background Colors */
     --bg-primary: #0a0a0a;
@@ -123,7 +123,7 @@ body {
     --border-focus: var(--primary-400);
     
     /* State Colors */
-    --success: #22c55e;
+    --success: #4199a6;
     --warning: #f59e0b;
     --error: #ef4444;
     --info: var(--primary-400);
@@ -135,17 +135,17 @@ body {
 
 /* Light Theme */
 :root[data-theme="light"] {
-    /* Primary Colors - Verde Musgo */
-    --primary-50: #f0f9f0;
-    --primary-100: #dcf2dc;
-    --primary-200: #bae6ba;
-    --primary-300: #86d186;
-    --primary-400: #4ade80;
-    --primary-500: #22c55e;
-    --primary-600: #16a34a;
-    --primary-700: #15803d;
-    --primary-800: #166534;
-    --primary-900: #14532d;
+    /* Primary Colors - Azul Petróleo */
+    --primary-50: #f0f9fa;
+    --primary-100: #ccf1f6;
+    --primary-200: #99e3ed;
+    --primary-300: #66d0e4;
+    --primary-400: #33bdda;
+    --primary-500: #246a73;
+    --primary-600: #1d555b;
+    --primary-700: #164043;
+    --primary-800: #0f2a2c;
+    --primary-900: #081515;
     
     /* Background Colors */
     --bg-primary: #ffffff;
@@ -174,8 +174,8 @@ body {
     --info: var(--primary-500);
     
     /* Accent Color */
-    --accent: var(--primary-600);
-    --accent-hover: var(--primary-700);
+    --accent: var(--primary-500);
+    --accent-hover: var(--primary-600);
     
     /* Shadows (Light theme specific) */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -721,16 +721,25 @@ body {
 .hero-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-3xl);
+    gap: var(--space-2xl);
     align-items: center;
     position: relative;
     z-index: 2;
 }
 
+/* Desktop Layout - Photo on the right */
 @media (min-width: 1024px) {
     .hero-content {
         grid-template-columns: 1fr 400px;
         gap: var(--space-3xl);
+    }
+    
+    .hero-visual {
+        order: 2;
+    }
+    
+    .hero-text {
+        order: 1;
     }
 }
 
@@ -937,11 +946,13 @@ body {
     .social-link {
         width: 48px;
         height: 48px;
+        flex-shrink: 0;
     }
     
     .social-icon {
         width: 20px;
         height: 20px;
+        flex-shrink: 0;
     }
 }
 
@@ -950,6 +961,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 1024px) {
+    .hero-visual {
+        margin-bottom: 0;
+    }
 }
 
 .hero-image {
