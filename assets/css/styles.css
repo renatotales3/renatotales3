@@ -1755,26 +1755,24 @@ body:not(.using-mouse) [tabindex]:focus {
 /* Timeline */
 .about-timeline {
     position: relative;
-    padding-left: var(--space-xl);
-}
-
-.about-timeline::before {
-    content: '';
-    position: absolute;
-    left: 12px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, var(--accent), var(--primary-300));
-    border-radius: var(--radius-full);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .timeline-item {
     position: relative;
     margin-bottom: var(--space-xl);
     display: flex;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     gap: var(--space-md);
+    width: 100%;
 }
 
 .timeline-item:last-child {
@@ -1782,12 +1780,12 @@ body:not(.using-mouse) [tabindex]:focus {
 }
 
 .timeline-icon {
-    position: absolute;
-    left: -32px;
-    top: 2px;
+    position: relative;
+    left: 0;
+    top: 0;
     width: 32px;
     height: 32px;
-    background: linear-gradient(135deg, var(--accent) 0%, #1a4f56 100%);
+    background: var(--accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1798,24 +1796,52 @@ body:not(.using-mouse) [tabindex]:focus {
     cursor: pointer;
     box-shadow: 
         0 4px 15px rgba(var(--accent-rgb), 0.3),
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 2px 8px rgba(0, 0, 0, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .timeline-icon:hover {
-    transform: scale(1.15);
+    transform: scale(1.1);
     box-shadow: 
         0 8px 25px rgba(var(--accent-rgb), 0.4),
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    background: linear-gradient(135deg, #2a7a83 0%, var(--accent) 100%);
+        0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-content {
+    flex: 1;
+    text-align: left;
+}
+
+.timeline-content h4 {
+    font-size: var(--fs-md);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.timeline-content p {
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.timeline-content h4 {
+    font-size: var(--fs-md);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.timeline-content p {
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    margin: 0;
 }
 
 .timeline-icon svg {
     width: 16px;
     height: 16px;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 /* Timeline Icon Tooltip */
@@ -1851,7 +1877,7 @@ body:not(.using-mouse) [tabindex]:focus {
 }
 
 .timeline-content h4 {
-    font-size: var(--fs-lg);
+    font-size: var(--fs-md);
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: var(--space-xs);
@@ -1865,7 +1891,6 @@ body:not(.using-mouse) [tabindex]:focus {
 
 .timeline-item:hover .timeline-icon {
     transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4);
 }
 
 /* Stats */
@@ -2082,22 +2107,37 @@ body:not(.using-mouse) [tabindex]:focus {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .about-timeline {
-        padding-left: var(--space-lg);
+        max-width: 250px;
     }
     
-    .about-timeline::before {
-        left: 8px;
+    .timeline-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--space-sm);
     }
     
     .timeline-icon {
-        left: -28px;
-        width: 20px;
-        height: 20px;
+        width: 28px;
+        height: 28px;
+        margin-bottom: var(--space-xs);
     }
     
     .timeline-icon svg {
-        width: 10px;
-        height: 10px;
+        width: 14px;
+        height: 14px;
+    }
+    
+    .timeline-content {
+        text-align: center;
+    }
+    
+    .timeline-content h4 {
+        font-size: var(--fs-sm);
+    }
+    
+    .timeline-content p {
+        font-size: var(--fs-xs);
     }
     
     .about-stats {
