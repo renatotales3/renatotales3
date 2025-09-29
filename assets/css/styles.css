@@ -1485,12 +1485,15 @@ body:not(.using-mouse) [tabindex]:focus {
 .hero-background {
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
     bottom: 0;
+    /* Expandir para toda a viewport, ignorando margens/padding do container */
+    width: 100vw;
+    transform: translateX(-50%);
     z-index: 1;
     opacity: 0.15;
     transition: opacity var(--transition-base);
+    pointer-events: none;
 }
 
 .hero-grid {
@@ -1528,9 +1531,10 @@ body:not(.using-mouse) [tabindex]:focus {
 .particle-container {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 100vw;
     height: 100%;
+    transform: translateX(-50%);
     overflow: hidden;
     z-index: 2;
     pointer-events: none;
