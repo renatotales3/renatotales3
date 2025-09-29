@@ -1484,12 +1484,7 @@ body:not(.using-mouse) [tabindex]:focus {
 /* Hero Background - Adaptive for themes */
 .hero-background {
     position: absolute;
-    top: 0;
-    left: 50%;
-    bottom: 0;
-    /* Expandir para toda a viewport, ignorando margens/padding do container */
-    width: 100vw;
-    transform: translateX(-50%);
+    inset: 0; /* cobre toda a seção hero, sem respeitar padding do container */
     z-index: 1;
     opacity: 0.15;
     transition: opacity var(--transition-base);
@@ -1498,6 +1493,7 @@ body:not(.using-mouse) [tabindex]:focus {
 
 .hero-grid {
     transition: background-image var(--transition-base);
+    background-repeat: repeat; /* garante repetição contínua */
 }
 
 /* Grid pattern - Dark theme */
@@ -1508,7 +1504,8 @@ body:not(.using-mouse) [tabindex]:focus {
         linear-gradient(rgba(var(--accent-rgb), 0.15) 1px, transparent 1px),
         linear-gradient(90deg, rgba(var(--accent-rgb), 0.15) 1px, transparent 1px);
     background-size: 50px 50px;
-    animation: grid-move 20s linear infinite;
+    background-position: 0 0, 0 0; /* duas camadas */
+    animation: grid-pan 20s linear infinite;
 }
 
 /* Grid pattern - Light theme */
@@ -1519,22 +1516,20 @@ body:not(.using-mouse) [tabindex]:focus {
         linear-gradient(rgba(var(--accent-rgb), 0.25) 1px, transparent 1px),
         linear-gradient(90deg, rgba(var(--accent-rgb), 0.25) 1px, transparent 1px);
     background-size: 50px 50px;
-    animation: grid-move 20s linear infinite;
+    background-position: 0 0, 0 0;
+    animation: grid-pan 20s linear infinite;
 }
 
-@keyframes grid-move {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+/* Animação suave do grid usando background-position (sem criar bordas vazias) */
+@keyframes grid-pan {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 50px 50px, 50px 50px; }
 }
 
 /* Particle System - Adaptive colors */
 .particle-container {
     position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100vw;
-    height: 100%;
-    transform: translateX(-50%);
+    inset: 0; /* ocupa toda a seção hero */
     overflow: hidden;
     z-index: 2;
     pointer-events: none;
