@@ -16,6 +16,9 @@ class PortfolioApp {
         // Wait for other managers to initialize
         await this.waitForManagers();
         
+        // Create loading particles first
+        this.createLoadingParticles();
+        
         // Initialize components
         this.initMobileMenu();
         this.initSmoothScrolling();
@@ -45,16 +48,56 @@ class PortfolioApp {
     // ===================================
     
     hideLoadingScreen() {
+        if (!this.loadingScreen) return;
+        
+        // Simple delay then hide
         setTimeout(() => {
-            if (this.loadingScreen) {
-                this.loadingScreen.classList.add('hidden');
-                
-                // Remove from DOM after animation
-                setTimeout(() => {
-                    this.loadingScreen.remove();
-                }, 500);
-            }
-        }, 1000);
+            this.loadingScreen.classList.add('hidden');
+            
+            // Remove from DOM after animation
+            setTimeout(() => {
+                this.loadingScreen.remove();
+            }, 500);
+        }, 1500);
+    }
+    
+    createLoadingParticles() {
+        const particleContainer = document.getElementById('loading-particles');
+        if (!particleContainer) {
+            console.log('Loading particles container not found');
+            return;
+        }
+        
+        console.log('Creating loading particles...');
+        
+        // Create particles similar to hero section
+        const particleCount = 30;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'loading-particle';
+            
+            // Random size
+            const size = Math.random() * 3 + 2; // 2-5px
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            
+            // Random position
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 12 + 's';
+            particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            
+            particleContainer.appendChild(particle);
+        }
+        
+        // Activate particles immediately
+        setTimeout(() => {
+            particleContainer.classList.add('active');
+            const particles = particleContainer.querySelectorAll('.loading-particle');
+            particles.forEach(particle => {
+                particle.classList.add('active');
+            });
+            console.log(`Activated ${particles.length} loading particles`);
+        }, 100);
     }
     
     // ===================================
@@ -105,12 +148,36 @@ class PortfolioApp {
         this.mobileMenu.classList.add('open');
         this.mobileMenuToggle.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
+        
+        // Animate menu links with cascade effect
+        const links = this.mobileMenu.querySelectorAll('.nav-mobile-link');
+        gsap.fromTo(links, {
+            opacity: 0,
+            x: -30
+        }, {
+            opacity: 1,
+            x: 0,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: 'power2.out'
+        });
     }
     
     closeMobileMenu() {
-        this.mobileMenu.classList.remove('open');
-        this.mobileMenuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        // Animate menu links out
+        const links = this.mobileMenu.querySelectorAll('.nav-mobile-link');
+        gsap.to(links, {
+            opacity: 0,
+            x: -20,
+            duration: 0.2,
+            stagger: 0.02,
+            ease: 'power2.in',
+            onComplete: () => {
+                this.mobileMenu.classList.remove('open');
+                this.mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
     }
     
     // ===================================
@@ -123,22 +190,61 @@ class PortfolioApp {
         links.forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
-                if (href === '#') return;
+                if (href === '#' || href.length <= 1) return;
                 
                 e.preventDefault();
                 const target = document.querySelector(href);
                 
                 if (target) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight;
+                    // Pause scroll progress during navigation
+                    const progressBar = document.getElementById('scroll-progress');
+                    if (progressBar) {
+                        progressBar.style.pointerEvents = 'none';
+                    }
                     
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20; // Extra offset
+                    
+                    // Smooth scroll with callback
+                    this.smoothScrollTo(targetPosition, () => {
+                        // Re-enable scroll progress
+                        if (progressBar) {
+                            setTimeout(() => {
+                                progressBar.style.pointerEvents = '';
+                            }, 100);
+                        }
                     });
                 }
             });
         });
+    }
+    
+    smoothScrollTo(target, callback) {
+        const startPosition = window.pageYOffset;
+        const distance = target - startPosition;
+        const duration = Math.min(Math.abs(distance) * 0.5, 800); // Dynamic duration
+        let startTime = null;
+        
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            // Easing function
+            const ease = progress < 0.5 
+                ? 2 * progress * progress 
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            
+            window.scrollTo(0, startPosition + (distance * ease));
+            
+            if (timeElapsed < duration) {
+                requestAnimationFrame(animation);
+            } else if (callback) {
+                callback();
+            }
+        }
+        
+        requestAnimationFrame(animation);
     }
     
     // ===================================
@@ -160,47 +266,96 @@ class PortfolioApp {
         // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger);
         
-        // Animate hero content
-        gsap.fromTo('.hero-text > *', {
+        // Create cinematic entrance timeline
+        const heroTimeline = gsap.timeline({ delay: 0.5 });
+        
+        // 1. Animate hero image first (focal point)
+        heroTimeline.fromTo('.hero-visual', {
+            opacity: 0,
+            scale: 0.8,
+            rotation: -5
+        }, {
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 1.2,
+            ease: 'back.out(1.7)'
+        });
+        
+        // 2. Animate title with split reveal
+        heroTimeline.fromTo('.hero-title', {
+            opacity: 0,
+            y: 50,
+            skewY: 3
+        }, {
+            opacity: 1,
+            y: 0,
+            skewY: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        }, '-=0.8');
+        
+        // 3. Animate subtitle and typing text
+        heroTimeline.fromTo('.hero-subtitle', {
+            opacity: 0,
+            x: -30
+        }, {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            ease: 'power2.out'
+        }, '-=0.4');
+        
+        // 4. Animate description with fade up
+        heroTimeline.fromTo('.hero-description', {
             opacity: 0,
             y: 30
         }, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.2,
+            duration: 0.6,
             ease: 'power2.out'
-        });
+        }, '-=0.3');
         
-        // Animate hero image
-        gsap.fromTo('.hero-visual', {
+        // 5. Animate status and actions
+        heroTimeline.fromTo(['.hero-status', '.hero-actions'], {
             opacity: 0,
-            scale: 0.8
+            y: 20
         }, {
             opacity: 1,
-            scale: 1,
-            duration: 1,
-            delay: 0.3,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1,
             ease: 'power2.out'
-        });
+        }, '-=0.2');
         
-        // Animate sections on scroll
+        // Animate sections on scroll with better triggers
         const sections = document.querySelectorAll('.section:not(.hero)');
-        sections.forEach(section => {
-            gsap.fromTo(section, {
-                opacity: 0,
-                y: 50
+        sections.forEach((section, index) => {
+            // Only animate if section is not already visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                        gsap.fromTo(entry.target, {
+                            opacity: 0,
+                            y: 60
+                        }, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: 'power2.out',
+                            delay: index * 0.1
+                        });
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
             }, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
-                }
+                rootMargin: '-10% 0px -10% 0px',
+                threshold: 0.1
             });
+            
+            observer.observe(section);
         });
     }
     
@@ -326,6 +481,7 @@ class TypingAnimation {
         this.deleteSpeed = 75; // Aumentado de 50 para 75ms
         this.pauseDelay = 3000; // Aumentado de 2000 para 3000ms
         this.isAnimating = false;
+        this.timeoutId = null; // Track timeout for proper cleanup
         
         this.updateStrings();
         this.start();
@@ -347,14 +503,33 @@ class TypingAnimation {
     
     stop() {
         this.isAnimating = false;
+        
+        // Clear any pending timeouts
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
     }
     
     restart() {
         this.stop();
         this.updateStrings();
+        
+        // Reset all animation state
         this.currentStringIndex = 0;
         this.currentCharIndex = 0;
         this.isDeleting = false;
+        
+        // Reset speeds to original values
+        this.typeSpeed = 150;
+        this.deleteSpeed = 75;
+        this.pauseDelay = 3000;
+        
+        // Clear any existing content
+        if (this.element) {
+            this.element.textContent = '';
+        }
+        
         setTimeout(() => this.start(), 100);
     }
     
@@ -371,11 +546,11 @@ class TypingAnimation {
             if (this.currentCharIndex === 0) {
                 this.isDeleting = false;
                 this.currentStringIndex = (this.currentStringIndex + 1) % this.strings.length;
-                setTimeout(() => this.type(), 200);
+                this.timeoutId = setTimeout(() => this.type(), 200);
                 return;
             }
             
-            setTimeout(() => this.type(), this.deleteSpeed);
+            this.timeoutId = setTimeout(() => this.type(), this.deleteSpeed);
         } else {
             // Type character
             this.currentCharIndex++;
@@ -383,11 +558,11 @@ class TypingAnimation {
             
             if (this.currentCharIndex === currentString.length) {
                 this.isDeleting = true;
-                setTimeout(() => this.type(), this.pauseDelay);
+                this.timeoutId = setTimeout(() => this.type(), this.pauseDelay);
                 return;
             }
             
-            setTimeout(() => this.type(), this.typeSpeed);
+            this.timeoutId = setTimeout(() => this.type(), this.typeSpeed);
         }
     }
 }

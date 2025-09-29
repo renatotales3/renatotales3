@@ -1,55 +1,74 @@
-// Simple Scroll Progress Implementation
+// Enhanced Scroll Progress Implementation
 (function() {
+    let ticking = false;
+    
     // Wait for DOM to be ready
     document.addEventListener('DOMContentLoaded', function() {
         const progressBar = document.getElementById('scroll-progress');
         
         if (!progressBar) {
-            console.log('Progress bar element not found');
+            console.warn('Progress bar element not found');
             return;
         }
         
-        console.log('Progress bar found, initializing...');
-        
+        // Smooth scroll progress update with RAF
         function updateScrollProgress() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            
-            if (scrollHeight <= 0) {
-                progressBar.classList.remove('show');
-                progressBar.style.transform = 'scaleX(0)';
-                progressBar.style.opacity = '0';
-                return;
-            }
-            
-            const scrolled = Math.min(scrollTop / scrollHeight, 1);
-            
-            // Hide progress bar when at top (first 100px)
-            if (scrollTop < 100) {
-                progressBar.classList.remove('show');
-                progressBar.style.opacity = '0';
-                progressBar.style.transform = 'scaleX(0)';
-                progressBar.classList.remove('active');
-            } else {
-                progressBar.classList.add('show');
-                progressBar.style.opacity = '1';
-                progressBar.style.transform = `scaleX(${scrolled})`;
-                
-                // Add active class when scrolling
-                if (scrolled > 0.05) {
-                    progressBar.classList.add('active');
-                } else {
-                    progressBar.classList.remove('active');
-                }
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    
+                    if (scrollHeight <= 0) {
+                        progressBar.classList.remove('show');
+                        progressBar.style.transform = 'scaleX(0)';
+                        progressBar.style.opacity = '0';
+                        ticking = false;
+                        return;
+                    }
+                    
+                    const scrolled = Math.min(Math.max(scrollTop / scrollHeight, 0), 1);
+                    
+                    // Smooth show/hide with threshold
+                    if (scrollTop < 80) {
+                        progressBar.classList.remove('show');
+                        progressBar.style.opacity = '0';
+                        progressBar.style.transform = 'scaleX(0)';
+                    } else {
+                        progressBar.classList.add('show');
+                        progressBar.style.opacity = '1';
+                        // Smooth scale transition
+                        progressBar.style.transform = `scaleX(${scrolled})`;
+                    }
+                    
+                    ticking = false;
+                });
+                ticking = true;
             }
         }
         
-        // Update on scroll
-        window.addEventListener('scroll', updateScrollProgress, { passive: true });
+        // Throttled scroll listener
+        let scrollTimeout;
+        function handleScroll() {
+            clearTimeout(scrollTimeout);
+            updateScrollProgress();
+            
+            // Add smooth class during scroll
+            progressBar.classList.add('scrolling');
+            
+            scrollTimeout = setTimeout(() => {
+                progressBar.classList.remove('scrolling');
+            }, 150);
+        }
+        
+        // Update on scroll with passive listener
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // Update on resize to recalculate
+        window.addEventListener('resize', updateScrollProgress, { passive: true });
         
         // Initial update
-        updateScrollProgress();
+        setTimeout(updateScrollProgress, 100);
         
-        console.log('Scroll progress initialized');
+        console.log('Enhanced scroll progress initialized');
     });
 })();

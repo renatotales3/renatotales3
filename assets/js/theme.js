@@ -59,6 +59,15 @@ class ThemeManager {
     toggleTheme() {
         const currentTheme = this.root.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Add click animation
+        if (this.themeToggle) {
+            this.themeToggle.style.transform = 'translateY(-1px) scale(0.95)';
+            setTimeout(() => {
+                this.themeToggle.style.transform = '';
+            }, 150);
+        }
+        
         this.setTheme(newTheme);
     }
     

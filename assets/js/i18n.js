@@ -220,6 +220,15 @@ class I18nManager {
     
     toggleLanguage() {
         const newLang = this.currentLang === 'pt-BR' ? 'en' : 'pt-BR';
+        
+        // Add click animation
+        if (this.langToggle) {
+            this.langToggle.style.transform = 'translateY(-1px) scale(0.95)';
+            setTimeout(() => {
+                this.langToggle.style.transform = '';
+            }, 150);
+        }
+        
         this.setLanguage(newLang);
     }
     
