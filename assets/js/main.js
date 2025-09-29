@@ -196,6 +196,17 @@ class PortfolioApp {
                 const target = document.querySelector(href);
                 
                 if (target) {
+                    // Immediately update active state for instant feedback
+                    const navLinks = document.querySelectorAll('.nav-link, .nav-mobile-link');
+                    const targetId = target.id;
+                    
+                    // Remove active from all links
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    
+                    // Add active to clicked links immediately
+                    const clickedLinks = document.querySelectorAll(`a[href="#${targetId}"]`);
+                    clickedLinks.forEach(navLink => navLink.classList.add('active'));
+                    
                     // Pause scroll progress during navigation
                     const progressBar = document.getElementById('scroll-progress');
                     if (progressBar) {
@@ -222,7 +233,16 @@ class PortfolioApp {
     smoothScrollTo(target, callback) {
         const startPosition = window.pageYOffset;
         const distance = target - startPosition;
-        const duration = Math.min(Math.abs(distance) * 0.5, 800); // Dynamic duration
+        
+        // Otimized duration - much faster and more responsive
+        const baseDuration = 400; // Base duration reduced from max 800 to 400
+        const maxDuration = 600; // Maximum duration reduced
+        const minDuration = 250; // Minimum duration for very short distances
+        
+        // Calculate duration based on distance but with better limits
+        let duration = Math.abs(distance) * 0.3; // Reduced multiplier from 0.5 to 0.3
+        duration = Math.max(minDuration, Math.min(duration, maxDuration));
+        
         let startTime = null;
         
         function animation(currentTime) {
@@ -230,9 +250,9 @@ class PortfolioApp {
             const timeElapsed = currentTime - startTime;
             const progress = Math.min(timeElapsed / duration, 1);
             
-            // Easing function
+            // Improved easing function - more responsive and snappy
             const ease = progress < 0.5 
-                ? 2 * progress * progress 
+                ? 4 * progress * progress * progress
                 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
             
             window.scrollTo(0, startPosition + (distance * ease));
@@ -366,23 +386,79 @@ class PortfolioApp {
     initActiveNavLinks() {
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link, .nav-mobile-link');
+        let activeSection = '';
+        let isScrolling = false;
         
+        // Debounced scroll handler to prevent flickering
+        const updateActiveLink = debounce(() => {
+            const scrollPosition = window.scrollY + 120; // Offset for header
+            let newActiveSection = '';
+            
+            // Find current section with better logic
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionBottom = sectionTop + sectionHeight;
+                
+                // Check if we're in this section
+                if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionBottom - 50) {
+                    newActiveSection = section.id;
+                }
+                
+                // Handle edge case for last section
+                if (index === sections.length - 1 && scrollPosition >= sectionTop - 100) {
+                    newActiveSection = section.id;
+                }
+            });
+            
+            // Update active links only if section actually changed
+            if (newActiveSection && newActiveSection !== activeSection) {
+                activeSection = newActiveSection;
+                
+                // Immediate update without delay to prevent flickering
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                const activeLinks = document.querySelectorAll(`a[href="#${newActiveSection}"]`);
+                activeLinks.forEach(link => link.classList.add('active'));
+            }
+            
+            isScrolling = false;
+        }, 10); // Reduced debounce for more responsive updates
+        
+        // Track scrolling state
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            isScrolling = true;
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 100);
+            
+            updateActiveLink();
+        });
+        
+        // Intersection Observer as fallback for precision
         const observer = new IntersectionObserver((entries) => {
+            // Only process if not actively scrolling to prevent conflicts
+            if (isScrolling) return;
+            
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
                     const id = entry.target.id;
                     
-                    // Remove active class from all links
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    
-                    // Add active class to current links
-                    const activeLinks = document.querySelectorAll(`a[href="#${id}"]`);
-                    activeLinks.forEach(link => link.classList.add('active'));
+                    if (id !== activeSection) {
+                        activeSection = id;
+                        
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        const activeLinks = document.querySelectorAll(`a[href="#${id}"]`);
+                        activeLinks.forEach(link => link.classList.add('active'));
+                    }
                 }
             });
         }, {
-            rootMargin: '-100px 0px -50% 0px',
-            threshold: 0.1
+            rootMargin: '-15% 0px -15% 0px',
+            threshold: [0.3, 0.5, 0.7]
         });
         
         sections.forEach(section => observer.observe(section));
