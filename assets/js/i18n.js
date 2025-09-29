@@ -32,6 +32,7 @@ const translations = {
             },
             social: {
                 linkedin: 'Conectar no LinkedIn',
+                linkedinUrl: 'https://www.linkedin.com/in/renatotales3/',
                 github: 'Ver repositórios no GitHub', 
                 email: 'Enviar email'
             }
@@ -129,6 +130,7 @@ const translations = {
             },
             social: {
                 linkedin: 'Connect on LinkedIn',
+                linkedinUrl: 'https://www.linkedin.com/in/renatotales3/?locale=en_US',
                 github: 'View repositories on GitHub',
                 email: 'Send email'
             }
@@ -292,6 +294,9 @@ class I18nManager {
         // Update resume download links based on language
         this.updateResumeLinks();
         
+        // Update LinkedIn link based on language
+        this.updateLinkedInLink();
+        
         // Update stats content
         this.updateStats();
     }
@@ -335,6 +340,14 @@ class I18nManager {
             element.setAttribute('aria-label', translation);
             element.setAttribute('title', translation);
         });
+    }
+
+    updateLinkedInLink() {
+        const linkedinLink = document.getElementById('linkedin-link');
+        if (linkedinLink) {
+            const linkedinUrl = this.t('hero.social.linkedinUrl');
+            linkedinLink.href = linkedinUrl;
+        }
     }
     
     updateLangToggleText() {
