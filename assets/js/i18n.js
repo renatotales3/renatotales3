@@ -67,22 +67,12 @@ const translations = {
             },
             stats: {
                 stat1: {
-                    number: '1+',
-                    suffix: 'Ano',
-                    label: 'Experiência em Desenvolvimento',
-                    detail: 'Frontend, Backend e Mobile'
+                    label: 'Experiência Full Stack',
+                    detail: 'Frontend, Backend e Mobile – 1 ano construindo soluções completas'
                 },
                 stat2: {
-                    number: '80',
-                    suffix: '%',
-                    label: 'Redução Automação de Processos',
-                    detail: 'Tempo de vendas otimizado'
-                },
-                stat3: {
-                    number: '2',
-                    suffix: '',
-                    label: 'Plataformas Desenvolvimento Mobile',
-                    detail: 'Android e iOS nativo'
+                    label: 'Automação e Performance',
+                    detail: 'Redução de 80% no tempo de processos e otimização de vendas'
                 }
             },
             project: {
@@ -174,22 +164,12 @@ const translations = {
             },
             stats: {
                 stat1: {
-                    number: '1+',
-                    suffix: 'Year',
-                    label: 'Development Experience',
-                    detail: 'Frontend, Backend and Mobile'
+                    label: 'Full Stack Experience',
+                    detail: 'Frontend, Backend and Mobile – 1 year building complete solutions'
                 },
                 stat2: {
-                    number: '80',
-                    suffix: '%',
-                    label: 'Process Automation Reduction',
-                    detail: 'Optimized sales time'
-                },
-                stat3: {
-                    number: '2',
-                    suffix: '',
-                    label: 'Mobile Development Platforms',
-                    detail: 'Native Android and iOS'
+                    label: 'Automation and Performance',
+                    detail: '80% reduction in process time and sales optimization'
                 }
             },
             project: {
@@ -324,19 +304,10 @@ class I18nManager {
             const statData = stats[statKey];
             const statIndex = index + 1;
             
-            // Update stat number and suffix
-            const numberElement = document.querySelector(`[data-stat="${statIndex}"] .stat-number`);
-            const suffixElement = document.querySelector(`[data-stat="${statIndex}"] .stat-suffix`);
+            // Update stat label and detail
             const labelElement = document.querySelector(`[data-stat="${statIndex}"] .stat-label`);
             const detailElement = document.querySelector(`[data-stat="${statIndex}"] .stat-detail`);
             
-            if (numberElement) {
-                numberElement.textContent = statData.number;
-                numberElement.setAttribute('data-target', statData.number.replace(/\D/g, ''));
-            }
-            if (suffixElement) {
-                suffixElement.textContent = statData.suffix;
-            }
             if (labelElement) {
                 labelElement.textContent = statData.label;
             }
