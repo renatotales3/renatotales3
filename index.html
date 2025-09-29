@@ -21,11 +21,28 @@
     
     <title data-i18n="site.title">Renato Tales - Desenvolvedor Full-Stack</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
-    <link rel="shortcut icon" href="assets/favicon.svg">
-    <link rel="apple-touch-icon" href="assets/favicon.svg">
+    <!-- Force Favicon Refresh -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    
+    <!-- Favicon - Cache Busting -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1759161181">
+    <link rel="shortcut icon" href="assets/favicon.svg?v=1759161181">
+    <link rel="apple-touch-icon" href="assets/favicon.svg?v=1759161181">
+    <link rel="icon" sizes="any" href="assets/favicon.svg?v=1759161181">
+    <link rel="mask-icon" href="assets/favicon.svg?v=1759161181" color="#246a73">
+    
+    <!-- Favicon Force Refresh Script -->
+    <script>
+    (function() {
+        var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        link.type = 'image/svg+xml';
+        link.rel = 'icon';
+        link.href = 'assets/favicon.svg?v=' + Date.now();
+        document.getElementsByTagName('head')[0].appendChild(link);
+    })();
+    </script>
     
     <!-- Preload Critical Resources -->
     <link rel="preload" href="assets/css/styles.css" as="style">
