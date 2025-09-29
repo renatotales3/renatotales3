@@ -37,7 +37,48 @@ const translations = {
             }
         },
         about: {
-            title: 'Sobre Mim'
+            title: 'Sobre Mim',
+            subtitle: 'Desenvolvedor Full-Stack apaixonado por tecnologia',
+            paragraph1: 'Sou um desenvolvedor Full-Stack apaixonado por criar soluções digitais que fazem a diferença. Minha jornada na programação começou em 2024, quando me dediquei ao frontend, design com Figma e Python.',
+            paragraph2: 'Ao longo do meu aprendizado, expandi meus conhecimentos para o ecossistema completo: React, Node.js, Java, bancos de dados e outras tecnologias. Acredito que o desenvolvimento é um processo contínuo de evolução.',
+            paragraph3: 'Busco sempre desenvolver soluções que geram resultados reais. Criei um sistema de automação com n8n que reduziu em 80% o tempo de execução de processos de vendas, desde o primeiro contato até o agendamento com consultores.',
+            paragraph4: 'Atualmente trabalho no Core, meu projeto pessoal: um app completo de finanças em React Native para Android e iOS. O lema é "No centro das suas finanças" - uma solução que visa simplificar a gestão financeira pessoal.',
+            timeline: {
+                '2024': {
+                    title: 'Início na Programação',
+                    description: 'Frontend, Figma, Python'
+                },
+                '2025a': {
+                    title: 'Desenvolvedor Full-Stack',
+                    description: 'React, Node.js, Java'
+                },
+                '2025b': {
+                    title: 'Banco de Dados & Backend',
+                    description: 'SQL, NoSQL, APIs RESTful'
+                },
+                '2025c': {
+                    title: 'Automação de Vendas',
+                    description: 'Sistema n8n (-80% tempo)'
+                },
+                '2025d': {
+                    title: 'App Core',
+                    description: 'React Native (Android/iOS)'
+                }
+            },
+            stats: {
+                experience: 'Anos de Experiência',
+                efficiency: 'Melhoria de Eficiência',
+                platforms: 'Plataformas Mobile',
+                automation: 'Automação Avançada'
+            },
+            project: {
+                slogan: 'No centro das suas finanças',
+                status: 'Em desenvolvimento'
+            },
+            cta: {
+                projects: 'Ver Meus Projetos',
+                resume: 'Baixar Currículo'
+            }
         },
         skills: {
             title: 'Habilidades'
@@ -89,7 +130,48 @@ const translations = {
             }
         },
         about: {
-            title: 'About Me'
+            title: 'About Me',
+            subtitle: 'Full-Stack Developer passionate about technology',
+            paragraph1: 'I am a Full-Stack developer passionate about creating digital solutions that make a difference. My programming journey began in 2024, when I dedicated myself to frontend, Figma design and Python.',
+            paragraph2: 'Throughout my learning, I expanded my knowledge to the complete ecosystem: React, Node.js, Java, databases and other technologies. I believe that development is a continuous process of evolution.',
+            paragraph3: 'I always seek to develop solutions that generate real results. I created an automation system with n8n that reduced sales process execution time by 80%, from first contact to scheduling with consultants.',
+            paragraph4: 'I am currently working on Core, my personal project: a complete finance app in React Native for Android and iOS. The motto is "At the center of your finances" - a solution that aims to simplify personal financial management.',
+            timeline: {
+                '2024': {
+                    title: 'Started Programming',
+                    description: 'Frontend, Figma, Python'
+                },
+                '2025a': {
+                    title: 'Full-Stack Developer',
+                    description: 'React, Node.js, Java'
+                },
+                '2025b': {
+                    title: 'Database & Backend',
+                    description: 'SQL, NoSQL, RESTful APIs'
+                },
+                '2025c': {
+                    title: 'Sales Automation',
+                    description: 'n8n System (-80% time)'
+                },
+                '2025d': {
+                    title: 'Core App',
+                    description: 'React Native (Android/iOS)'
+                }
+            },
+            stats: {
+                experience: 'Years of Experience',
+                efficiency: 'Efficiency Improvement',
+                platforms: 'Mobile Platforms',
+                automation: 'Advanced Automation'
+            },
+            project: {
+                slogan: 'At the center of your finances',
+                status: 'In development'
+            },
+            cta: {
+                projects: 'See My Projects',
+                resume: 'Download Resume'
+            }
         },
         skills: {
             title: 'Skills'
@@ -198,6 +280,20 @@ class I18nManager {
                 element.textContent = translation;
             }
         });
+        
+        // Update resume download links based on language
+        this.updateResumeLinks();
+    }
+    
+    updateResumeLinks() {
+        const resumeBtn = document.querySelector('.about-resume-btn');
+        if (resumeBtn) {
+            if (this.currentLang === 'pt-BR') {
+                resumeBtn.href = '/resume/curriculo_renato_tales.pdf';
+            } else {
+                resumeBtn.href = '/resume/resume_renato_tales.pdf';
+            }
+        }
         
         // Update tooltip attributes
         const tooltipElements = document.querySelectorAll('[data-i18n-tooltip]');

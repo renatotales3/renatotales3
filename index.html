@@ -218,11 +218,257 @@
         <!-- About Section - Placeholder for now -->
         <section id="about" class="about section">
             <div class="container">
-                <h2 data-i18n="about.title">Sobre Mim</h2>
-                <p>Seção em desenvolvimento...</p>
-                <div style="height: 400px; background: var(--bg-secondary); margin: 2rem 0; border-radius: 1rem; display: flex; align-items: center; justify-content: center;">
-                    <p>Conteúdo de teste para scroll</p>
+                <div class="about-content">
+                    <!-- About Text -->
+                    <div class="about-text">
+                        <h2 class="about-title" data-i18n="about.title">Sobre mim</h2>
+                        <p class="about-subtitle" data-i18n="about.subtitle">Desenvolvedor Full-Stack apaixonado por tecnologia</p>
+                        
+                        <div class="about-description">
+                            <p data-i18n="about.paragraph1">
+                                Sou um desenvolvedor Full-Stack apaixonado por criar soluções digitais que 
+                                fazem a diferença. Minha jornada na programação começou em 2024, quando me 
+                                dediquei ao frontend, design com Figma e Python.
+                            </p>
+                            
+                            <p data-i18n="about.paragraph2">
+                                Ao longo do meu aprendizado, expandi meus conhecimentos para o ecossistema 
+                                completo: React, Node.js, Java, bancos de dados e outras tecnologias. 
+                                Acredito que o desenvolvimento é um processo contínuo de evolução.
+                            </p>
+                            
+                            <p data-i18n="about.paragraph3">
+                                Busco sempre desenvolver soluções que geram resultados reais. Criei um 
+                                sistema de automação com n8n que reduziu em 80% o tempo de execução de 
+                                processos de vendas, desde o primeiro contato até o agendamento com consultores.
+                            </p>
+                            
+                            <p data-i18n="about.paragraph4">
+                                Atualmente trabalho no Core, meu projeto pessoal: um app completo de finanças 
+                                em React Native para Android e iOS. O lema é 'No centro das suas finanças' - 
+                                uma solução que visa simplificar a gestão financeira pessoal.
+                            </p>
+                        </div>
+                        
+                        <div class="about-actions">
+                            <a href="#projects" class="btn btn-primary" data-i18n="about.cta.projects">Ver Meus Projetos</a>
+                            <a href="/resume/curriculo_renato_tales.pdf" class="btn btn-secondary about-resume-btn" data-i18n="about.cta.resume" download>Baixar Currículo</a>
+                        </div>
+                    </div>
+                    
+                    <!-- About Visual -->
+                    <div class="about-visual">
+                        <!-- Timeline -->
+                        <div class="about-timeline">
+                            <div class="timeline-item" data-year="2024">
+                                <div class="timeline-icon" data-year="2024">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="startGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#246a73;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#1a4f56;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect x="4" y="3" width="16" height="18" rx="2" fill="url(#startGradient)" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 7h8M8 10h8M8 13h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="18" cy="6" r="3" fill="#ff6b6b" stroke="white" stroke-width="2"/>
+                                        <path d="M16.5 6L17.5 7L19.5 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <rect x="6" y="15" width="4" height="4" rx="1" fill="white"/>
+                                        <rect x="11" y="15" width="4" height="4" rx="1" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-i18n="about.timeline.2024.title">Início na Programação</h4>
+                                    <p data-i18n="about.timeline.2024.description">Frontend, Figma, Python</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item" data-year="2025">
+                                <div class="timeline-icon" data-year="2025">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="fullstackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#246a73;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#1a4f56;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle cx="12" cy="12" r="8" fill="url(#fullstackGradient)" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 9l4 4 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16 15l-4-4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12" r="2" fill="white"/>
+                                        <circle cx="12" cy="6" r="1.5" fill="#ffd700"/>
+                                        <circle cx="18" cy="12" r="1.5" fill="#ffd700"/>
+                                        <circle cx="12" cy="18" r="1.5" fill="#ffd700"/>
+                                        <circle cx="6" cy="12" r="1.5" fill="#ffd700"/>
+                                    </svg>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-i18n="about.timeline.2025a.title">Desenvolvedor Full-Stack</h4>
+                                    <p data-i18n="about.timeline.2025a.description">React, Node.js, Java</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item" data-year="2025">
+                                <div class="timeline-icon" data-year="2025">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="dbGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#246a73;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#1a4f56;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect x="4" y="6" width="16" height="3" rx="1" fill="url(#dbGradient)" stroke="currentColor" stroke-width="1"/>
+                                        <rect x="4" y="10" width="16" height="3" rx="1" fill="url(#dbGradient)" stroke="currentColor" stroke-width="1"/>
+                                        <rect x="4" y="14" width="16" height="3" rx="1" fill="url(#dbGradient)" stroke="currentColor" stroke-width="1"/>
+                                        <circle cx="7" cy="7.5" r="1" fill="white"/>
+                                        <circle cx="10" cy="7.5" r="1" fill="white"/>
+                                        <circle cx="7" cy="11.5" r="1" fill="white"/>
+                                        <circle cx="10" cy="11.5" r="1" fill="white"/>
+                                        <circle cx="7" cy="15.5" r="1" fill="white"/>
+                                        <circle cx="10" cy="15.5" r="1" fill="white"/>
+                                        <path d="M15 7.5h3M15 11.5h3M15 15.5h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                                        <rect x="2" y="4" width="20" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-i18n="about.timeline.2025b.title">Banco de Dados & Backend</h4>
+                                    <p data-i18n="about.timeline.2025b.description">SQL, NoSQL, APIs RESTful</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item" data-year="2025">
+                                <div class="timeline-icon" data-year="2025">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="automationGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#246a73;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#1a4f56;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle cx="6" cy="6" r="2" fill="url(#automationGradient)" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="18" cy="6" r="2" fill="url(#automationGradient)" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="6" cy="18" r="2" fill="url(#automationGradient)" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="18" cy="18" r="2" fill="url(#automationGradient)" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="12" cy="12" r="3" fill="url(#automationGradient)" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 6L10 8M16 6L14 8M8 18L10 16M16 18L14 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M12 9V15M9 12H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-i18n="about.timeline.2025c.title">Automação de Vendas</h4>
+                                    <p data-i18n="about.timeline.2025c.description">Sistema n8n (-80% tempo)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item" data-year="2025">
+                                <div class="timeline-icon" data-year="2025">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="coreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#246a73;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#1a4f56;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect x="3" y="4" width="18" height="12" rx="3" fill="url(#coreGradient)" stroke="currentColor" stroke-width="2"/>
+                                        <circle cx="12" cy="10" r="2" fill="white"/>
+                                        <rect x="6" y="18" width="12" height="2" rx="1" fill="url(#coreGradient)" stroke="currentColor" stroke-width="1"/>
+                                        <rect x="9" y="16" width="6" height="2" rx="1" fill="url(#coreGradient)"/>
+                                        <path d="M8 8h2M8 12h2M14 8h2M14 12h2" stroke="white" stroke-width="1" stroke-linecap="round"/>
+                                        <circle cx="12" cy="10" r="1" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 data-i18n="about.timeline.2025d.title">App Core</h4>
+                                    <p data-i18n="about.timeline.2025d.description">React Native (Android/iOS)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-number" data-target="1">0</span>
+                                    <span class="stat-suffix">+</span>
+                                    <p class="stat-label" data-i18n="about.stats.experience">Anos de Experiência</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-number" data-target="80">0</span>
+                                    <span class="stat-suffix">%</span>
+                                    <p class="stat-label" data-i18n="about.stats.efficiency">Melhoria de Eficiência</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 21L12 17L16 21" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M12 17V13" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-number" data-target="2">0</span>
+                                    <span class="stat-suffix"></span>
+                                    <p class="stat-label" data-i18n="about.stats.platforms">Plataformas Mobile</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-number" data-target="100">0</span>
+                                    <span class="stat-suffix">%</span>
+                                    <p class="stat-label" data-i18n="about.stats.automation">Automação Avançada</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Highlight -->
+                        <div class="about-project">
+                            <div class="project-code">
+                                <div class="code-header">
+                                    <div class="code-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <span class="code-title">core-app.js</span>
+                                </div>
+                                <div class="code-content">
+                                    <pre><code><span class="code-keyword">const</span> <span class="code-variable">coreApp</span> = {
+  <span class="code-property">name</span>: <span class="code-string">"Core"</span>,
+  <span class="code-property">slogan</span>: <span class="code-string" data-i18n="about.project.slogan">"No centro das suas finanças"</span>,
+  <span class="code-property">platforms</span>: [<span class="code-string">"Android"</span>, <span class="code-string">"iOS"</span>],
+  <span class="code-property">status</span>: <span class="code-string" data-i18n="about.project.status">"Em desenvolvimento"</span>
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="hero-background">
+                <div class="hero-grid"></div>
+                <div class="particle-container" id="about-particle-container"></div>
             </div>
         </section>
 

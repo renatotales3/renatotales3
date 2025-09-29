@@ -349,8 +349,11 @@ class PortfolioApp {
             ease: 'power2.out'
         }, '-=0.2');
         
+        // About Section Animations
+        this.initAboutAnimations();
+        
         // Animate sections on scroll with better triggers
-        const sections = document.querySelectorAll('.section:not(.hero)');
+        const sections = document.querySelectorAll('.section:not(.hero):not(.about)');
         sections.forEach((section, index) => {
             // Only animate if section is not already visible
             const observer = new IntersectionObserver((entries) => {
@@ -376,6 +379,109 @@ class PortfolioApp {
             });
             
             observer.observe(section);
+        });
+    }
+    
+    // ===================================
+    // About Section Animations
+    // ===================================
+    
+    initAboutAnimations() {
+        // About section entrance animation
+        gsap.fromTo('.about-text', {
+            opacity: 0,
+            y: 50
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.about',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+        
+        // Timeline items animation
+        gsap.fromTo('.timeline-item', {
+            opacity: 0,
+            x: -30
+        }, {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.about-timeline',
+                start: 'top 85%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+        
+        // Stats counter animation
+        gsap.fromTo('.stat-item', {
+            opacity: 0,
+            y: 30,
+            scale: 0.8
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: 'back.out(1.7)',
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: '.about-stats',
+                start: 'top 85%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse',
+                onEnter: () => this.animateStatNumbers()
+            }
+        });
+        
+        // Project highlight animation
+        gsap.fromTo('.about-project', {
+            opacity: 0,
+            y: 40
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.about-project',
+                start: 'top 85%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    }
+    
+    // Animate stat numbers with counter effect
+    animateStatNumbers() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+            
+            const updateNumber = () => {
+                current += increment;
+                if (current < target) {
+                    stat.textContent = Math.floor(current);
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    stat.textContent = target;
+                }
+            };
+            
+            updateNumber();
         });
     }
     
@@ -489,6 +595,32 @@ class PortfolioApp {
         setTimeout(() => {
             particleContainer.classList.add('active');
         }, 1000);
+
+        // Initialize About section particles (usando as mesmas partículas do Hero)
+        this.initAboutParticles();
+    }
+
+    initAboutParticles() {
+        const aboutParticleContainer = document.getElementById('about-particle-container');
+        if (!aboutParticleContainer) return;
+        
+        // Create particles for About section usando as mesmas classes do Hero
+        const particleCount = 30;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle'; // Mesma classe do Hero
+            
+            // Random position
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            
+            aboutParticleContainer.appendChild(particle);
+        }
+
+        // Activate About particle system
+        setTimeout(() => {
+            aboutParticleContainer.classList.add('active');
+        }, 1200);
     }
 
     // ===================================
