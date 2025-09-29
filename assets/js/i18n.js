@@ -66,10 +66,24 @@ const translations = {
                 }
             },
             stats: {
-                experience: 'Anos de Experiência',
-                efficiency: 'Melhoria de Eficiência',
-                platforms: 'Plataformas Mobile',
-                automation: 'Automação Avançada'
+                stat1: {
+                    number: '1+',
+                    suffix: 'Ano',
+                    label: 'Experiência em Desenvolvimento',
+                    detail: 'Frontend, Backend e Mobile'
+                },
+                stat2: {
+                    number: '80',
+                    suffix: '%',
+                    label: 'Redução Automação de Processos',
+                    detail: 'Tempo de vendas otimizado'
+                },
+                stat3: {
+                    number: '2',
+                    suffix: '',
+                    label: 'Plataformas Desenvolvimento Mobile',
+                    detail: 'Android e iOS nativo'
+                }
             },
             project: {
                 slogan: 'No centro das suas finanças',
@@ -159,10 +173,24 @@ const translations = {
                 }
             },
             stats: {
-                experience: 'Years of Experience',
-                efficiency: 'Efficiency Improvement',
-                platforms: 'Mobile Platforms',
-                automation: 'Advanced Automation'
+                stat1: {
+                    number: '1+',
+                    suffix: 'Year',
+                    label: 'Development Experience',
+                    detail: 'Frontend, Backend and Mobile'
+                },
+                stat2: {
+                    number: '80',
+                    suffix: '%',
+                    label: 'Process Automation Reduction',
+                    detail: 'Optimized sales time'
+                },
+                stat3: {
+                    number: '2',
+                    suffix: '',
+                    label: 'Mobile Development Platforms',
+                    detail: 'Native Android and iOS'
+                }
             },
             project: {
                 slogan: 'At the center of your finances',
@@ -283,6 +311,39 @@ class I18nManager {
         
         // Update resume download links based on language
         this.updateResumeLinks();
+        
+        // Update stats content
+        this.updateStats();
+    }
+    
+    updateStats() {
+        const stats = this.t('about.stats');
+        
+        // Update each stat item
+        Object.keys(stats).forEach((statKey, index) => {
+            const statData = stats[statKey];
+            const statIndex = index + 1;
+            
+            // Update stat number and suffix
+            const numberElement = document.querySelector(`[data-stat="${statIndex}"] .stat-number`);
+            const suffixElement = document.querySelector(`[data-stat="${statIndex}"] .stat-suffix`);
+            const labelElement = document.querySelector(`[data-stat="${statIndex}"] .stat-label`);
+            const detailElement = document.querySelector(`[data-stat="${statIndex}"] .stat-detail`);
+            
+            if (numberElement) {
+                numberElement.textContent = statData.number;
+                numberElement.setAttribute('data-target', statData.number.replace(/\D/g, ''));
+            }
+            if (suffixElement) {
+                suffixElement.textContent = statData.suffix;
+            }
+            if (labelElement) {
+                labelElement.textContent = statData.label;
+            }
+            if (detailElement) {
+                detailElement.textContent = statData.detail;
+            }
+        });
     }
     
     updateResumeLinks() {
