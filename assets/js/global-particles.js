@@ -58,6 +58,11 @@
         // Stagger animation start times for more natural effect
         const randomDelay = (index / totalCount) * 20;
         particle.style.animationDelay = `-${randomDelay}s`;
+    // Ensure each particle has its own animation duration/timing/direction
+    const duration = (Math.random() * 15) + 10; // 10s - 25s
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationTimingFunction = 'cubic-bezier(0.4,0.0,0.2,1)';
+    if (Math.random() > 0.5) particle.style.animationDirection = 'reverse';
         
         return particle;
     }

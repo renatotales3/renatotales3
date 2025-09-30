@@ -88,8 +88,11 @@ class PortfolioApp {
             
             // Random position
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 12 + 's';
-            particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            const loadDur = (Math.random() * 6) + 6; // 6s - 12s
+            particle.style.animationDuration = loadDur + 's';
+            particle.style.animationTimingFunction = 'cubic-bezier(0.4,0.0,0.2,1)';
             
             particleContainer.appendChild(particle);
         }
@@ -591,7 +594,16 @@ class PortfolioApp {
             
             // Random position
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
+            // Random vertical start within viewport so movement is visible
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            // Ensure varied durations and optional reverse direction
+            const duration = (Math.random() * 15) + 8; // 8s - 23s
+            particle.style.animationDuration = duration + 's';
+            particle.style.animationTimingFunction = 'linear';
+            if (Math.random() > 0.5) particle.style.animationDirection = 'reverse';
+            // Add a small horizontal offset for the CSS animation to animate from
+            particle.dataset.hOffset = (Math.random() * 100 - 50).toFixed(2);
             
             particleContainer.appendChild(particle);
         }
@@ -617,7 +629,13 @@ class PortfolioApp {
             
             // Random position
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            const duration = (Math.random() * 15) + 8;
+            particle.style.animationDuration = duration + 's';
+            particle.style.animationTimingFunction = 'linear';
+            if (Math.random() > 0.5) particle.style.animationDirection = 'reverse';
+            particle.dataset.hOffset = (Math.random() * 100 - 50).toFixed(2);
             
             aboutParticleContainer.appendChild(particle);
         }

@@ -420,7 +420,7 @@
 
 @keyframes float-particle {
     0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
+        transform: translateY(100vh) translateX(0) rotate(0deg) translateZ(0);
         opacity: 0;
     }
     10% {
@@ -430,7 +430,7 @@
         opacity: 0.6;
     }
     100% {
-        transform: translateY(-100px) translateX(100px) rotate(360deg);
+        transform: translateY(-120px) translateX(120px) rotate(360deg) translateZ(0);
         opacity: 0;
     }
 }
