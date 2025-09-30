@@ -1,0 +1,244 @@
+/**
+ * ========================================
+ * GLOBAL BACKGROUND - Grid + Particles
+ * ========================================
+ * Sistema de grid e partículas contínuo em todo o site
+ * Aplicado ao body para garantir continuidade entre seções
+ */
+
+/* ===================================
+   Global Background Container
+   =================================== */
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    opacity: 0.12;
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+}
+
+/* Grid pattern - Dark theme */
+[data-theme="dark"] body::before {
+    background-image: 
+        linear-gradient(rgba(var(--accent-rgb), 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--accent-rgb), 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 0 0;
+    animation: global-grid-pan 20s linear infinite;
+}
+
+/* Grid pattern - Light theme */
+[data-theme="light"] body::before {
+    background-image: 
+        linear-gradient(rgba(var(--accent-rgb), 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--accent-rgb), 0.2) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 0 0;
+    animation: global-grid-pan 20s linear infinite;
+}
+
+@keyframes global-grid-pan {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 50px 50px, 50px 50px; }
+}
+
+/* ===================================
+   Global Particle System
+   =================================== */
+
+.global-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.global-particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    will-change: transform;
+}
+
+/* Particles - Dark theme */
+[data-theme="dark"] .global-particle {
+    width: 4px;
+    height: 4px;
+    background: var(--primary-400);
+    box-shadow: 0 0 6px rgba(var(--primary-400-rgb), 0.6);
+    animation: float-global-particle 20s ease-in-out infinite;
+}
+
+[data-theme="dark"] .global-particles.active .global-particle {
+    opacity: 0.7;
+}
+
+/* Particles - Light theme */
+[data-theme="light"] .global-particle {
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4);
+    animation: float-global-particle 20s ease-in-out infinite;
+}
+
+[data-theme="light"] .global-particles.active .global-particle {
+    opacity: 0.8;
+}
+
+/* Animação principal - movimento suave em forma de 8 */
+@keyframes float-global-particle {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(30px, -20px) scale(1.1);
+    }
+    50% {
+        transform: translate(0, -40px) scale(0.9);
+    }
+    75% {
+        transform: translate(-30px, -20px) scale(1.05);
+    }
+}
+
+/* Variações de animação para criar movimento natural e dessincronizado */
+.global-particle:nth-child(2n) {
+    animation-duration: 25s;
+    animation-delay: -5s;
+}
+
+.global-particle:nth-child(3n) {
+    animation-duration: 30s;
+    animation-delay: -10s;
+    animation-direction: reverse;
+}
+
+.global-particle:nth-child(4n) {
+    animation-duration: 22s;
+    animation-delay: -15s;
+}
+
+.global-particle:nth-child(5n) {
+    animation-duration: 28s;
+    animation-delay: -8s;
+    animation-direction: reverse;
+}
+
+.global-particle:nth-child(6n) {
+    animation-duration: 24s;
+    animation-delay: -12s;
+}
+
+.global-particle:nth-child(7n) {
+    animation-duration: 26s;
+    animation-delay: -6s;
+    animation-direction: reverse;
+}
+
+/* Animação de rotação suave adicional para algumas partículas */
+@keyframes rotate-particle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.global-particle:nth-child(3n+1) {
+    animation: float-global-particle 25s ease-in-out infinite, 
+               rotate-particle 40s linear infinite;
+}
+
+/* Variações de cores - Dark theme (sem sobrescrever animação) */
+[data-theme="dark"] .global-particle:nth-child(3n+2) {
+    width: 3px;
+    height: 3px;
+    background: var(--primary-300);
+    box-shadow: 0 0 4px rgba(102, 208, 228, 0.5);
+}
+
+[data-theme="dark"] .global-particle:nth-child(5n+3) {
+    width: 2px;
+    height: 2px;
+    background: var(--primary-500);
+    box-shadow: 0 0 3px rgba(var(--accent-rgb), 0.4);
+}
+
+/* Variações de cores - Light theme (sem sobrescrever animação) */
+[data-theme="light"] .global-particle:nth-child(3n+2) {
+    width: 4px;
+    height: 4px;
+    background: var(--primary-600);
+    box-shadow: 0 0 6px rgba(29, 85, 91, 0.6);
+}
+
+[data-theme="light"] .global-particle:nth-child(5n+3) {
+    width: 3px;
+    height: 3px;
+    background: var(--primary-700);
+    box-shadow: 0 0 4px rgba(22, 64, 67, 0.5);
+}
+
+/* ===================================
+   Ajustes para seções
+   =================================== */
+
+/* Garantir que todas as seções tenham position relative e z-index acima do background */
+.section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero section - reduzir opacidade do background local */
+.hero .hero-background {
+    opacity: 0.05 !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    /* Grid menor no mobile */
+    [data-theme="dark"] body::before,
+    [data-theme="light"] body::before {
+        background-size: 30px 30px;
+    }
+    
+    @keyframes global-grid-pan {
+        0% { background-position: 0 0, 0 0; }
+        100% { background-position: 30px 30px, 30px 30px; }
+    }
+    
+    /* Menos partículas visíveis no mobile */
+    .global-particle:nth-child(n+15) {
+        display: none;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    [data-theme="dark"] body::before,
+    [data-theme="light"] body::before {
+        background-size: 40px 40px;
+    }
+    
+    @keyframes global-grid-pan {
+        0% { background-position: 0 0, 0 0; }
+        100% { background-position: 40px 40px, 40px 40px; }
+    }
+}
+
+/* Performance optimization - Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    .global-particle {
+        animation: none !important;
+    }
+}

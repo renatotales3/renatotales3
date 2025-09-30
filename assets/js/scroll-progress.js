@@ -21,7 +21,6 @@
                     if (scrollHeight <= 0) {
                         progressBar.classList.remove('show');
                         progressBar.style.transform = 'scaleX(0)';
-                        progressBar.style.opacity = '0';
                         ticking = false;
                         return;
                     }
@@ -31,11 +30,9 @@
                     // Smooth show/hide with threshold
                     if (scrollTop < 80) {
                         progressBar.classList.remove('show');
-                        progressBar.style.opacity = '0';
                         progressBar.style.transform = 'scaleX(0)';
                     } else {
                         progressBar.classList.add('show');
-                        progressBar.style.opacity = '1';
                         // Smooth scale transition
                         progressBar.style.transform = `scaleX(${scrolled})`;
                     }

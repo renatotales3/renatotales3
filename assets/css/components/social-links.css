@@ -1,0 +1,140 @@
+/**
+ * ========================================
+ * SOCIAL LINKS COMPONENT
+ * ========================================
+ * Botões de redes sociais com tooltips
+ * Hover effects individuais por plataforma
+ */
+
+.social-links {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.social-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    overflow: hidden;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left var(--transition-slow);
+    z-index: 1;
+}
+
+.social-link:hover::before {
+    left: 100%;
+}
+
+.social-link:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--bg-tertiary);
+    box-shadow: var(--shadow-xl);
+}
+
+.social-link:active {
+    transform: translateY(-2px);
+}
+
+.social-icon {
+    transition: transform var(--transition-base);
+    z-index: 2;
+}
+
+.social-link:hover .social-icon {
+    transform: scale(1.1);
+}
+
+/* Individual social link colors on hover */
+.social-link[href*="linkedin"]:hover {
+    border-color: #0077b5;
+    color: #0077b5;
+}
+
+.social-link[href*="github"]:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.social-link[href*="mailto"]:hover {
+    border-color: #ea4335;
+    color: #ea4335;
+}
+
+/* ===================================
+   Tooltip
+   =================================== */
+
+.social-link[data-tooltip] {
+    position: relative;
+}
+
+.social-link[data-tooltip]::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-quaternary);
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    z-index: var(--z-tooltip);
+    box-shadow: var(--shadow-lg);
+    pointer-events: none;
+}
+
+.social-link[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: -40px;
+}
+
+/* ===================================
+   Mobile Adjustments
+   =================================== */
+
+@media (max-width: 768px) {
+    .social-links {
+        gap: var(--space-md);
+        justify-content: center;
+    }
+    
+    .social-link {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+    }
+    
+    .social-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+}

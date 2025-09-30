@@ -1,0 +1,55 @@
+/* ===================================
+   Light Theme
+   =================================== */
+
+:root[data-theme="light"] {
+    /* Primary Colors - Azul Petróleo */
+    --primary-50: #f0f9fa;
+    --primary-100: #ccf1f6;
+    --primary-200: #99e3ed;
+    --primary-300: #66d0e4;
+    --primary-400: #33bdda;
+    --primary-400-rgb: 51, 189, 218;
+    --primary-500: #246a73;
+    --primary-600: #1d555b;
+    --primary-700: #164043;
+    --primary-800: #0f2a2c;
+    --primary-900: #081515;
+    
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-primary-rgb: 255, 255, 255;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-quaternary: #e2e8f0;
+    --bg-hover: rgba(0, 0, 0, 0.05);
+    --bg-active: rgba(0, 0, 0, 0.1);
+    
+    /* Text Colors */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+    --text-inverse: #ffffff;
+    
+    /* Border Colors */
+    --border-primary: #e2e8f0;
+    --border-secondary: #cbd5e1;
+    --border-focus: var(--primary-500);
+    
+    /* State Colors */
+    --success: #16a34a;
+    --warning: #d97706;
+    --error: #dc2626;
+    --info: var(--primary-500);
+    
+    /* Accent Color */
+    --accent: var(--primary-500);
+    --accent-hover: var(--primary-600);
+    --accent-rgb: 36, 106, 115;
+    
+    /* Shadows (Light theme specific) */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}

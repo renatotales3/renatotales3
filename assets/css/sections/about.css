@@ -1,0 +1,158 @@
+/**
+ * ========================================
+ * ABOUT SECTION
+ * ========================================
+ * Seção sobre com texto + visuals (timeline + stats)
+ * Layout responsivo desktop/mobile
+ */
+
+/* ===================================
+   About Section Base
+   =================================== */
+
+.about {
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    min-height: 80vh;
+}
+
+/* Desktop Layout - Text on left, visuals on right */
+@media (min-width: 1024px) {
+    .about-content {
+        grid-template-columns: 1fr 400px;
+        gap: var(--space-3xl);
+        align-items: center;
+    }
+    
+    .about-text {
+        order: 1;
+    }
+    
+    .about-visual {
+        order: 2;
+    }
+}
+
+/* ===================================
+   About Text Content
+   =================================== */
+
+.about-text {
+    text-align: center;
+}
+
+@media (min-width: 1024px) {
+    .about-text {
+        text-align: left;
+    }
+}
+
+.about-title {
+    font-size: clamp(var(--fs-3xl), 4vw, var(--fs-5xl));
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+}
+
+.about-subtitle {
+    font-size: clamp(var(--fs-lg), 2vw, var(--fs-2xl));
+    font-weight: 600;
+    margin-bottom: var(--space-2xl);
+    color: var(--accent);
+    font-family: var(--font-mono);
+}
+
+.about-description {
+    margin-bottom: var(--space-2xl);
+}
+
+.about-description p {
+    font-size: var(--fs-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 1024px) {
+    .about-description p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.about-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===================================
+   About Actions
+   =================================== */
+
+.about-actions {
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (min-width: 1024px) {
+    .about-actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-actions .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* ===================================
+   About Visual (Timeline + Stats)
+   =================================== */
+
+.about-visual {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: var(--space-xl) 0;
+}
+
+/* ===================================
+   About Timeline Container
+   =================================== */
+
+.about-timeline {
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}

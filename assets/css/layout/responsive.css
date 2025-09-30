@@ -1,0 +1,87 @@
+/**
+ * ========================================
+ * RESPONSIVE LAYOUT
+ * ========================================
+ * Media queries globais
+ * Ajustes de tipografia e layout
+ */
+
+/* ===================================
+   Tablet & Mobile (≤768px)
+   =================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 1rem;
+        --section-padding: 4rem 0;
+        --fs-5xl: 2.25rem;
+        --fs-6xl: 2.75rem;
+    }
+    
+    .hero-content {
+        gap: var(--space-2xl);
+        text-align: center;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* ===================================
+   Mobile Small (≤480px)
+   =================================== */
+
+@media (max-width: 480px) {
+    :root {
+        --container-padding: 1rem;
+        --section-padding: 3rem 0;
+        --fs-4xl: 1.875rem;
+        --fs-5xl: 2rem;
+        --fs-6xl: 2.25rem;
+    }
+    
+    .hero-image {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .hero-subtitle {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+    }
+    
+    .stat-item {
+        padding: var(--space-sm);
+        gap: var(--space-xs);
+    }
+    
+    .stat-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .stat-number {
+        font-size: var(--fs-lg);
+    }
+    
+    .stat-suffix {
+        font-size: var(--fs-md);
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+}

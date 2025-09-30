@@ -1,0 +1,50 @@
+/**
+ * ========================================
+ * RENATO TALES PORTFOLIO - CSS Modular
+ * Main Stylesheet with Imports
+ * ========================================
+ * Refatorado em módulos para melhor manutenibilidade
+ * Preserva 100% do design e funcionalidade original
+ */
+
+/* ===================================
+   1. BASE - Fundamentos
+   =================================== */
+@import './base/reset.css';
+@import './base/variables.css';
+
+/* ===================================
+   2. THEMES - Temas claro/escuro
+   =================================== */
+@import './themes/dark.css';
+@import './themes/light.css';
+
+/* ===================================
+   3. BASE - Utilities
+   =================================== */
+@import './base/utilities.css';
+
+/* ===================================
+   4. COMPONENTS - Componentes reutilizáveis
+   =================================== */
+@import './components/loading.css';
+@import './components/buttons.css';
+@import './components/global-background.css';
+@import './components/scroll-progress.css';
+@import './components/header.css';
+@import './components/footer.css';
+@import './components/social-links.css';
+@import './components/timeline.css';
+@import './components/cards.css';
+
+/* ===================================
+   5. SECTIONS - Seções específicas
+   =================================== */
+@import './sections/hero.css';
+@import './sections/about.css';
+
+/* ===================================
+   6. LAYOUT - Responsive e Grid
+   =================================== */
+@import './layout/responsive.css';
+

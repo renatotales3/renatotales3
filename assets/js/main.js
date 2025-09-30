@@ -54,6 +54,11 @@ class PortfolioApp {
         setTimeout(() => {
             this.loadingScreen.classList.add('hidden');
             
+            // Restore body scroll immediately when loading screen starts fading
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+            
             // Remove from DOM after animation
             setTimeout(() => {
                 this.loadingScreen.remove();
